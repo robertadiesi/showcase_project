@@ -93,6 +93,12 @@ dt4 <- brick_for_prediction_norm %>%
   as.data.table %>% 
   .[, id_cls := ptsamp4_4@data] # add the class names to each row
 
+dt5 <- brick_for_prediction_norm %>% 
+  raster::extract(y = ptsamp5_5) %>% 
+  as.data.table %>% 
+  .[, id_cls := ptsamp5_5@data] # add the class names to each row
+
+
 
 #merge i due dataframe in un unico dataframe. Do il nome fiori e grass all'id 1 e 2
 dt<-rbind(dt1, dt2, dt3, dt4)
