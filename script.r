@@ -65,6 +65,10 @@ ptsamp4_4 <- spsample(ptsamp4, 750, type='regular') # lancio 750 punti a caso ne
 ptsamp4_4$class <- over(ptsamp4_4, ptsamp4)$id #do il valore di id=4 ai punti random
 #saveRDS(ptsamp4_4, file=paste0 ("C:/Users/MicTorresani/OneDrive - Scientific Network South Tyrol/unibo/master students/roberta/dati/punti_random", nome, "_ptsamp4_4.rds"))
 
+ptsamp5<-subset(poly, id == "5") #seleziono solo i poigoni con id=5
+ptsamp5_5 <- spsample(ptsamp4, 750, type='regular') # lancio 750 punti a caso nei poligoni con id=5 
+ptsamp5_5$class <- over(ptsamp5_5, ptsamp5)$id #do il valore di id=5 ai punti random
+#saveRDS(ptsamp5_5, file=paste0 ("C:/Users/MicTorresani/OneDrive - Scientific Network South Tyrol/unibo/master students/roberta/dati/punti_random", nome, "_ptsamp5_5.rds"))
 
 
 
