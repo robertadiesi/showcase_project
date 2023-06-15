@@ -1,5 +1,3 @@
-
-
 library(terra)
 
 list_raster<-list.files("C:/Users/Rober/Desktop/QGIS_progetto/dati_creati/modello_r10m_ritagliato/", pattern = ".tif", full.names = T)#carica le classificazioni (i raster tiff che risultano dallo script precedente)
