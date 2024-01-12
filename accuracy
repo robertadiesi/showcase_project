@@ -1,0 +1,56 @@
+# Make predictions on the test set
+predictions <- predict(model_rf, newdata = dt_test, type = 'raw')
+
+# Create a confusion matrix
+conf_matrix <- confusionMatrix(predictions, dt_test$class)
+
+# Extract relevant metrics
+accuracy <- conf_matrix$overall['Accuracy']
+
+# Print the confusion matrix and metrics
+print(conf_matrix)
+print(paste("Accuracy: ", accuracy))
+
+# Extract TP, TN, FP, FN
+TP <- conf_matrix$table[2, 2]  # True Positives
+TN <- conf_matrix$table[1, 1]  # True Negatives
+FP <- conf_matrix$table[1, 2]  # False Positives
+FN <- conf_matrix$table[2, 1]  # False Negatives
+
+# Print the confusion matrix and metrics
+print(conf_matrix)
+print(paste("Accuracy: ", accuracy))
+print(paste("True Positive (TP): ", TP))
+print(paste("True Negative (TN): ", TN))
+print(paste("False Positive (FP): ", FP))
+print(paste("False Negative (FN): ", FN))
+
+
+# Creare un data frame con i risultati
+results_df <- data.frame(
+  Class = c("a", "b", "c"),
+  Sensitivity = c(0.8884, 0.8879, 0.9598),
+  Specificity = c(0.9776, 0.9509, 0.9396),
+  Pos_Pred_Value = c(0.9522, 0.9000, 0.8884),
+  Neg_Pred_Value = c(0.9459, 0.9446, 0.9790),
+  Prevalence = c(0.3338, 0.3323, 0.3338),
+  Detection_Rate = c(0.2966, 0.2951, 0.3204),
+  Detection_Prevalence = c(0.3115, 0.3279, 0.3607),
+  Balanced_Accuracy = c(0.9330, 0.9194, 0.9497)
+)
+
+
+library(writexl)
+write_xlsx(list(results_df = results_df), path = "C:/Users/Rober/Desktop/QGIS_progetto/results.xlsx")
+
+
+if (!requireNamespace("writexl", quietly = TRUE)) {
+  install.packages("writexl")
+}
+
+# Carica la libreria writexl
+library(writexl)
+
+# Salva la matrice di confusione in un file Excel
+write_xlsx(list(conf_matrix = conf_matrix_df), path = "C:/Users/Rober/Desktop/QGIS_progetto/confusion_matrix.xlsx")
+
